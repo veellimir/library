@@ -16,3 +16,9 @@ body {
     --bs-alert-border-color: var(--bs-danger-border-subtle);
     --bs-alert-link-color: var(--bs-danger-text-emphasis);
 }
+
+.CustomBookTaken  {
+    background-color: #f0f0f0;
+    opacity: 0.6;
+    pointer-events: none; 
+}

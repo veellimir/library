@@ -8,7 +8,7 @@ from .base_forms import BaseFormUsers
 class CustomUserLibrarianRegisterForm(UserCreationForm, BaseFormUsers):
     role = forms.ChoiceField(
         choices=User.ROLE_USER,
-        initial='librarian',
+        initial="librarian",
         widget=forms.HiddenInput(),
         label=" ",
     )
@@ -25,13 +25,18 @@ class CustomUserLibrarianRegisterForm(UserCreationForm, BaseFormUsers):
             "employee_id",
             "password1",
             "password2",
+            "role",
         ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["role"].initial = "librarian"
 
 
 class CustomUserReaderRegisterForm(UserCreationForm, BaseFormUsers):
     role = forms.ChoiceField(
         choices=User.ROLE_USER,
-        initial='reader',
+        initial="reader",
         widget=forms.HiddenInput(),
         label=" ",
     )
@@ -49,5 +54,9 @@ class CustomUserReaderRegisterForm(UserCreationForm, BaseFormUsers):
             "address",
             "password1",
             "password2",
+            "role",
         ]
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["role"].initial = "reader"

@@ -1,8 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from mainapp.mixins import StrMixin
 
-class User(AbstractUser):
+
+class User(StrMixin, AbstractUser):
     ROLE_USER = [
         ('librarian', 'Библиотекарь'),
         ('reader', 'Читатель'),
@@ -26,5 +28,3 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=150, blank=True, verbose_name="Фамилия")
     address = models.TextField(blank=True, verbose_name="Адрес проживания")
 
-    def __str__(self):
-        return self.username

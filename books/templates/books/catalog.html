@@ -17,14 +17,18 @@
                     <h5 class="card-title" id="book-title-{{ book.id }}">
                         {{ book.title }}
                         <i class="fas fa-copy copy-icon" onclick="copyTitle('{{ book.id }}')" title="Копировать заголовок" style="cursor: pointer; margin-left: 8px;"></i>
-                        <span id="copy-notification-{{ book.id }}" class="copy-notification text-success" style="display:none; margin-left: 8px; font-size: 12px;">cкопировано</span>
+                        <span id="copy-notification-{{ book.id }}" class="copy-notification text-success" style="display:none; margin-left: 8px; font-size: 12px;">скопировано</span>
                     </h5>
                     <p class="card-text">{{ book.author }}</p>
                     <p><small class="text-muted">{{ book.genre }}</small></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             {% if book.id not in all_read_books %}
-                                <a href="{% url 'add_book' book.id %}" class="btn btn-sm btn-outline-primary">Взять книгу</a>
+                                {% if book.id not in taken_books_by_others %}
+                                    <a href="{% url 'add_book' book.id %}" class="btn btn-sm btn-outline-primary">Взять книгу</a>
+                                {% else %}
+                                    <button class="btn btn-sm btn-outline-danger" disabled>Занята другим</button>
+                                {% endif %}
                             {% else %}
                                 <button class="btn btn-sm btn-outline-secondary" disabled>Взята</button>
                             {% endif %}
@@ -38,5 +42,6 @@
     </div>
 </div>
 {% endif %}
+
 <script src="{% static 'js/copy_title_books.js' %}"></script>
 {% endblock %}

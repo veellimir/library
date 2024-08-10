@@ -23,7 +23,11 @@ def user_login(request):
         if user is not None:
             login(request, user)
             messages.info(request, f"Добро пожаловать {username} !")
-            return redirect("catalog")
+
+            if user.role == "reader":
+                return redirect("catalog")
+            else:
+                return redirect("users_read_books")
 
         messages.error(request, "Неверный пароль !")
 
@@ -56,7 +60,10 @@ def user_register(request, role):
 
             messages.success(request, success_message)
             login(request, user)
-            return redirect("catalog")
+            if user.role == "reader":
+                return redirect("catalog")
+            else:
+                return redirect("users_read_books")
         else:
             for error in form.errors.values():
                 messages.error(request, error)

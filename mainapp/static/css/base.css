@@ -3,6 +3,8 @@ body {
     margin: 0 auto;
 }
 
+a {text-decoration: none;}
+
 .wrapper--alert-alert {
     position: absolute;
     top: 0 !important;

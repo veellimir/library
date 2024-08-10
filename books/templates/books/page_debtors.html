@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% if user.role ==  'librarian' %}
+
+<div class="container mt-5">
+    <h1 class="mb-4">{{ title }}</h1>
+
+    <div class="row">
+        {% for user, books in user_book_dict.items %}
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">
+                            {{ user.username }} <br>
+                            <small class="text-muted">{{ user.first_name }} {{ user.last_name }}</small>
+                        </h5>
+                        <p class="card-text">Домашний адрес: <br> {{ user.address }}</p>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#book-list-{{ user.id }}" aria-expanded="false" aria-controls="book-list-{{ user.id }}">
+                            Открыть список книг
+                        </button>
+                    </div>
+                    <div id="book-list-{{ user.id }}" class="collapse">
+                        <ul class="list-group list-group-flush">
+                            {% for usr_book in books %}
+                                <li class="list-group-item">
+                                    <h6>{{ usr_book.book.title }}</h6>
+                                    <p>Автор: {{ usr_book.book.author }}</p>
+                                    <p>Дата получения: {{ usr_book.created_at }}</p>
+                                    <p>Получил(а): {{ usr_book.created_at|timesince }} назад</p>
+                                    <img src="{{ usr_book.book.picture.url }}" alt="{{ book.title }}" class="img-thumbnail" style="width: 80px;">
+                                </li>
+                            {% empty %}
+                                <li class="list-group-item">Нет книг.</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

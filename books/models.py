@@ -50,7 +50,7 @@ class ReadBookForUser(StrMixin, models.Model):
         on_delete=models.CASCADE,
         verbose_name="Книга"
     )
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата получения")
 
     class Meta:
         verbose_name = "Книгу для чтения"

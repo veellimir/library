@@ -10,7 +10,7 @@ class Book(StrMixin, models.Model):
     title = models.CharField(max_length=100, blank=False, null=False, verbose_name="Название книги")
     author = models.CharField(max_length=50, blank=False, null=False, verbose_name="Автор книги")
     picture = models.ImageField(blank=False, null=False, verbose_name="Обложка книги")
-    file_book = models.FileField(upload_to="books/", blank=False, null=False, verbose_name="Файл книги")
+    file_book = models.FileField(upload_to="books/", blank=False, null=False, verbose_name="PDF файл книги")
     date_of_receipt = models.DateTimeField(verbose_name="Дата получения книги")
 
     genre = models.ForeignKey(

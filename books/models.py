@@ -21,7 +21,7 @@ class Book(StrMixin, models.Model):
     )
 
     class Meta:
-        verbose_name = "Книга"
+        verbose_name = "Книгу"
         verbose_name_plural = "Книги"
         ordering = ["-date_of_receipt"]
 

@@ -11,14 +11,14 @@ Windows:
     python -m venv venv
     venv\Scripts\activate.bat
 
-### Установите зависимости из файла requirements
-Linux/Mac: 
+### Установите Poetry
 
-    pip3 install -r requirements.txt
+    curl -sSL https://install.python-poetry.org | python3 -
 
-Windows:
-    
-    pip install -r requirements.txt
+### Установить зависимости
+
+    poetry install
+
 
 ### Примените миграции
 Linux/Mac: 

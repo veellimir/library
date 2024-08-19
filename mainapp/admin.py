@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 
+from simple_history.admin import SimpleHistoryAdmin
+
 from books.models import Book, GenreBook, ReadBookForUser
 from mainapp.utils import html_image
 from users.models import User
@@ -30,9 +32,13 @@ class BooksAdmin(admin.ModelAdmin):
     html_img.short_description = "Миниатюра"
 
 
+class BookHistoryAdmin(SimpleHistoryAdmin, BooksAdmin):
+    pass
+
+
 admin.site.register(User)
 admin.site.register(GenreBook)
-admin.site.register(Book, BooksAdmin)
+admin.site.register(Book, BookHistoryAdmin)
 admin.site.register(ReadBookForUser, ReaderForUserAdmin)
 
 admin.site.unregister(Group)

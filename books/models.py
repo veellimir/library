@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 
+from simple_history.models import HistoricalRecords
+
 from mainapp.mixins import StrMixin
 from users.models import User
 
@@ -19,6 +21,8 @@ class Book(StrMixin, models.Model):
         related_name="books",
         verbose_name="Жанр"
     )
+
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = "Книгу"
